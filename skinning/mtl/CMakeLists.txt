@@ -30,6 +30,7 @@ PRIVATE
 target_compile_options(skinning
 PRIVATE
     "-xobjective-c++"
+    "-fobjc-arc"
 )
 
 target_link_libraries(skinning
@@ -45,5 +46,4 @@ set_target_properties(skinning
 PROPERTIES
     CXX_STANDARD 17
     MACOSX_BUNDLE TRUE
-    XCODE_ATTRIBUTE_CLANG_ENABLE_OBJC_ARC TRUE
 )

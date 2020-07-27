@@ -12,8 +12,18 @@
 
 //----------------------------------------------------------------------------------------------------------------------
 
+static bool is_focused = true;
+
+//----------------------------------------------------------------------------------------------------------------------
+
 static void OnError(int err, const char* msg) {
     spdlog::error("[{}] {}", err, msg);
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+static void OnFocus(GLFWwindow* window, int focused) {
+    is_focused = focused;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -31,6 +41,8 @@ int main(int argc, char* argv[]) {
 
         auto window = glfwCreateWindow(512, 512, "Skinning", nullptr, nullptr);
         assert(window);
+
+        glfwSetWindowFocusCallback(window, OnFocus);
 
         std::unique_ptr<Renderer> renderer;
 
@@ -65,13 +77,15 @@ int main(int argc, char* argv[]) {
 
         auto prev_time_stamp = glfwGetTime();
         while (!glfwWindowShouldClose(window)) {
-            auto curr_time_stamp = glfwGetTime();
-            auto delta_time = curr_time_stamp - prev_time_stamp;
+            if (is_focused) {
+                auto curr_time_stamp = glfwGetTime();
+                auto delta_time = curr_time_stamp - prev_time_stamp;
 
-            renderer->Update(delta_time);
-            renderer->Render(delta_time);
+                renderer->Update(delta_time);
+                renderer->Render(delta_time);
 
-            prev_time_stamp = curr_time_stamp;
+                prev_time_stamp = curr_time_stamp;
+            }
 
             glfwPollEvents();
         }
