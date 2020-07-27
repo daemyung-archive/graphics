@@ -6,7 +6,7 @@
 
 ## 목차
 
-* [스키닝](https://github.com/daemyung/graphics/tree/master/skinning/mtl)
+* [스키닝](https://github.com/daemyung/graphics/tree/master/skinning)
 
 ## 기고자
 
