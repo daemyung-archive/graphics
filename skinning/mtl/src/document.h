@@ -52,7 +52,6 @@ struct Skin {
     simd_float4x4 inverse_bind_matrix;
     Node* skeleton = nullptr;
     std::vector<Node*> joints;
-    std::vector<simd_float4x4> joint_palette;
 };
 
 //----------------------------------------------------------------------------------------------------------------------

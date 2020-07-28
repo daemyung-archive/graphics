@@ -21,13 +21,13 @@ vertex VS2RS vs_main(const    IA2VS     input             [[ stage_in  ]],
                      constant float4x4& projection_matrix [[ buffer(0) ]],
                      constant float4x4& view_matrix       [[ buffer(1) ]],
                      constant float4x4& model_matrix      [[ buffer(2) ]],
-                     constant float4x4* joint_palette     [[ buffer(3) ]]) {
+                     constant float4x4* joint_matrices    [[ buffer(3) ]]) {
     VS2RS output;
 
-    float4x4 skin_matrix = input.weights.x * joint_palette[input.joints.x] +
-                           input.weights.y * joint_palette[input.joints.y] +
-                           input.weights.z * joint_palette[input.joints.z] +
-                           input.weights.w * joint_palette[input.joints.w];
+    float4x4 skin_matrix = input.weights.x * joint_matrices[input.joints.x] +
+                           input.weights.y * joint_matrices[input.joints.y] +
+                           input.weights.z * joint_matrices[input.joints.z] +
+                           input.weights.w * joint_matrices[input.joints.w];
 
     output.position = projection_matrix *
                       view_matrix *

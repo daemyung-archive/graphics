@@ -582,18 +582,18 @@ void Document::Render(id<MTLRenderCommandEncoder> render_encoder, Node* node) {
             if (node->skin) {
                 auto& skin = node->skin;
                 auto& joints = skin->joints;
-                std::vector<simd_float4x4> joint_palette(joints.size());
+                std::vector<simd_float4x4> joint_matrices(joints.size());
 
-                for (auto i = 0; i != joint_palette.size(); ++i) {
+                for (auto i = 0; i != joint_matrices.size(); ++i) {
                     // Calculate inverse_model_matrix * joint_matrix * inverse_bind_matrix.
-                    joint_palette[i] = kInverseModelMatrix;
-                    joint_palette[i] = matrix_multiply(joint_palette[i], CalcModelMatrix(joints[i]));
-                    joint_palette[i] = matrix_multiply(joint_palette[i], skin->inverse_bind_matrix);
+                    joint_matrices[i] = kInverseModelMatrix;
+                    joint_matrices[i] = matrix_multiply(joint_matrices[i], CalcModelMatrix(joints[i]));
+                    joint_matrices[i] = matrix_multiply(joint_matrices[i], skin->inverse_bind_matrix);
                 }
 
                 // Set joint palette matrices.
-                [render_encoder setVertexBytes:&joint_palette[0]
-                                        length:sizeof(simd_float4x4) * joint_palette.size()
+                [render_encoder setVertexBytes:&joint_matrices[0]
+                                        length:sizeof(simd_float4x4) * joint_matrices.size()
                                        atIndex:3];
             }
 
