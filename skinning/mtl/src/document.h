@@ -49,7 +49,7 @@ struct Node {
 
 struct Skin {
     std::string name;
-    simd_float4x4 inverse_bind_matrix;
+    std::vector<simd_float4x4> inverse_bind_matrices;
     Node* skeleton = nullptr;
     std::vector<Node*> joints;
 };

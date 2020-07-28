@@ -307,10 +307,16 @@ Document::Document(id<MTLDevice> device, id<MTLCommandQueue> command_queue, cons
         auto& buffer_view = model.bufferViews[accessor.bufferView];
         auto& buffer = model.buffers[buffer_view.buffer];
 
+        skins_[i].inverse_bind_matrices.resize(accessor.count);
+
         auto offset = accessor.byteOffset + buffer_view.byteOffset;
+        auto stride = accessor.ByteStride(buffer_view) / sizeof(float);
         auto data = reinterpret_cast<const float*>(&buffer.data[offset]);
 
-        skins_[i].inverse_bind_matrix = simd_make_matrix(data);
+        for (auto j = 0; j != skins_[i].inverse_bind_matrices.size(); ++j) {
+            skins_[i].inverse_bind_matrices[j] = simd_make_matrix(data);
+            data += stride;
+        }
 
         // Set the skeleton of skin.
         skins_[i].skeleton = &nodes_[model.skins[i].skeleton];
@@ -588,7 +594,7 @@ void Document::Render(id<MTLRenderCommandEncoder> render_encoder, Node* node) {
                     // Calculate inverse_model_matrix * joint_matrix * inverse_bind_matrix.
                     joint_matrices[i] = kInverseModelMatrix;
                     joint_matrices[i] = matrix_multiply(joint_matrices[i], CalcModelMatrix(joints[i]));
-                    joint_matrices[i] = matrix_multiply(joint_matrices[i], skin->inverse_bind_matrix);
+                    joint_matrices[i] = matrix_multiply(joint_matrices[i], skin->inverse_bind_matrices[i]);
                 }
 
                 // Set joint palette matrices.
