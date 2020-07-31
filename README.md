@@ -8,6 +8,10 @@
 
 * [스키닝](https://github.com/daemyung/graphics/tree/master/skinning)
 
+## 예제 요청
+
+필요한 예제가 있으면 메일을 보내시거나 이슈를 생성해서 요청하시면 됩니다.
+
 ## 기고자
 
 * 장대명 / dm86.jang@gmail.com
