@@ -7,6 +7,7 @@
 ## 목차
 
 * [스키닝](https://github.com/daemyung/graphics/tree/master/skinning)
+* [PBR](https://github.com/daemyung/graphics/tree/master/pbr)
 
 ## 예제 요청
 
