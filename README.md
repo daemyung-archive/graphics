@@ -7,8 +7,32 @@
 ## 목차
 
 * [스키닝](https://github.com/daemyung/graphics/tree/master/skinning)
+
+------------------------------------------------------------------------------
+
 * [PBR](https://github.com/daemyung/graphics/tree/master/pbr)
+
+------------------------------------------------------------------------------
+
 * [레이 트레이싱](https://github.com/daemyung/graphics/tree/master/ray_tracing)
+
+------------------------------------------------------------------------------
+
+### OIT: Order Independent Transparency
+
+#### 설명
+
+ * [TRIANGLE 블로그](https://blog.naver.com/dmatrix/222066761464)
+ * [AMD 발표](https://www.slideshare.net/hgruen/oit-and-indirect-illumination-using-dx11-linked-lists)
+ * [OpenGL 4 Shading Language Cookbook](http://www.yes24.com/Product/Goods/66859151)
+
+#### 구현
+
+ * [Vulkan](https://github.com/daemyung/Vulkan/tree/master/examples/oit)
+ * [OpenGL](https://github.com/daemyung/OpenGL-4-Shading-Language-Cookbook-Third-Edition/tree/master/chapter06)
+
+ ------------------------------------------------------------------------------
+
 
 ## 예제 요청
 
