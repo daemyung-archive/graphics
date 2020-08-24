@@ -10,8 +10,11 @@ add_executable(ray_tracing
     source/hittable.h
     source/sphere.h
     source/hittable_list.h
+    source/moving_sphere.h
     source/camera.h
     source/material.h
+    source/aabb.h
+    source/bvh.h
     source/main.cc
 )
 
